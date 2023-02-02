@@ -1,0 +1,156 @@
+<section class="FooterSection">
+  <footer class="footer">
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+
+    <ul class="social-icon">
+      <li class="social-icon__item">
+        <a class="social-icon__link" href="#" target="_blank">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+      </li>
+      <li class="social-icon__item">
+        <a class="social-icon__link" href="#" target="_blank">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+      </li>
+      <li class="social-icon__item">
+        <a class="social-icon__link" href="#" target="_blank">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
+      </li>
+      <li class="social-icon__item">
+        <a
+          class="social-icon__link"
+          href="https://www.instagram.com/brogrammers_hood/"
+          target="_blank"
+        >
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="menu">
+      <li class="menu__item">
+        <a class="menu__link" href="/home">Home</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="/about">About</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="/courses">Courses</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="/team">Team</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="/contact">Contact</a>
+      </li>
+    </ul>
+    <p>&copy;2023 Brogrammers🍺 | All Rights Reserved</p>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <div class="container">
+      <div class="content">
+        <form action="/" method="POST" class="subscription">
+          <input
+            name="email"
+            class="add-email"
+            type="email"
+            placeholder="subscribe@me.now"
+          />
+          <button class="submit-email" type="submit">
+            <span class="before-submit">Subscribe</span>
+            <span class="after-submit">Thank you for subscribing!</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<!-- ------------------------------------------------------------java script---------------------------------------------------->
+
+<script>
+  function myFunction() {
+    var darkmodeicon = document.getElementById("darkmodeicon");
+    darkmodeicon.onclick = function () {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        darkmodeicon.src = "Images/icons8-moon-and-stars-48.png";
+      } else {
+        darkmodeicon.src = "Images/icons8-summer-48.png";
+      }
+    };
+  }
+  document
+    .querySelector(".submit-email")
+    .addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      document.querySelector(".subscription").classList.add("done");
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+  new Crate({
+      server: '1051843799103586366', // Brogrammers
+      channel: '1051849635620204595' // #ᴅɪᴄᴜꜱꜱɪᴏɴ-ꜰᴏʀᴜᴍ
+  })
+</script>
+
+<script src="vanilla-tilt.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+<script>
+  gsap.to("#bg_left", {
+    scrollTrigger: {
+      scrub: 1,
+    },
+    x: -500,
+    y: -200,
+  });
+
+  gsap.to("#bg_right", {
+    scrollTrigger: {
+      scrub: 1,
+    },
+    x: 500,
+    y: 200,
+  });
+
+  gsap.to("#fp_text", {
+    scrollTrigger: {
+      scrub: 1,
+    },
+    y: -300,
+  });
+
+  gsap.to("#fp_ptext", {
+    scrollTrigger: {
+      scrub: 1,
+    },
+    y: 200,
+  });
+</script>
+
+<!-- JavaScript Bundle with Popper -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://kit.fontawesome.com/99b9ce2976.js"
+  crossorigin="anonymous"
+></script>
+</body>
+</html>

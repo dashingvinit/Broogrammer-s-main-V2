@@ -1,0 +1,17 @@
+<%- include("partials/header") -%>
+<div class="container">
+  <h1 style="text-align: center"><%= CourseTitle %></h1>
+  <hr class="mb-3" />
+  <ul class="container">
+    <% foundNptels.forEach(function (foundNptel){ %>
+    <li>
+      <div class="nptel_question mb-3">
+        <a href="/nptel/<%=foundNptel.nptel_name %>/<%= foundNptel.week %> "
+          ><h5><%=foundNptel.week %></h5>
+        </a>
+      </div>
+    </li>
+    <% }) %>
+  </ul>
+</div>
+<%- include("partials/footer") -%>

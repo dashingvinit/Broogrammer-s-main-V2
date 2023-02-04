@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+'use: strict';
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
@@ -56,13 +56,13 @@ const nptel_courseSchema = new mongoose.Schema({
 });
 const Nptel = mongoose.model('Nptel', nptel_courseSchema);
 
-const userSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
   admin_name: { type: String, required: true },
   admin_user_name: { type: String, required: true, unique: true },
   admin_email: { type: String, required: true },
   admin_password: { type: String, required: true },
 });
-const User = mongoose.model('User', userSchema);
+const Admin = mongoose.model('Admin', adminSchema);
 
 app
   .route('/')
@@ -99,7 +99,7 @@ app
     }
     const password = req.body.admin_password;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newAdmin = new User({
+    const newAdmin = new Admin({
       admin_name: req.body.admin_name,
       admin_user_name: req.body.admin_username,
       admin_email: req.body.admin_email,
@@ -128,20 +128,22 @@ app
   })
   .post(async function (req, res) {
     const admin_userName = req.body.login_username;
-    console.log(admin_userName);
+    // console.log(admin_userName);
     const login_pass = req.body.login_password;
-    const user = await User.findOne({ admin_user_name: admin_userName }).lean();
-    console.log(user);
-    if (!user) {
+    const admin = await Admin.findOne({
+      admin_user_name: admin_userName,
+    }).lean();
+    // console.log(user);
+    if (!admin) {
       return res.json({ status: 'error', error: 'Invalid username/Password' });
     }
-    if (await bcrypt.compare(login_pass, user.admin_password)) {
+    if (await bcrypt.compare(login_pass, admin.admin_password)) {
       //the username, password combination is successful
 
       const token = jwt.sign(
         {
-          id: user._id,
-          username: user.admin_user_name,
+          id: admin._id,
+          username: admin.admin_user_name,
         },
         JWT_SECRET
       );

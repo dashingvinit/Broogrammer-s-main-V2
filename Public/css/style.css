@@ -81,31 +81,37 @@ body {
 margin-left: 1rem;
 }
 h1{
+  font-size: 5vh;
   color: var(--secondary_color);
   font-weight: 600;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
 }
 h2{
+  font-size: 3.5vh;
   color: var(--secondary_color);
   font-weight: 400;
   font-family: 'Poppins', sans-serif;
 }
 h3{
+  font-size: 3vh;
   color: var(--third_color);
   font-weight: 300;
   font-family: 'Poppins', sans-serif;
 }
 h4{
+  font-size: 2.5vh;
   color: var(--secondary_color);
   font-weight: 300;
   font-family: 'Poppins', sans-serif;
 }
 h5{
+  font-size: 2vh;
   font-weight: 300;
   font-family: 'Poppins', sans-serif;
 }
 p{
+  font-size: 1.7vh;
   font-family: 'Poppins', sans-serif;
 }
 ::selection {

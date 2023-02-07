@@ -64,6 +64,17 @@ const adminSchema = new mongoose.Schema({
 });
 const Admin = mongoose.model('Admin', adminSchema);
 
+const semesterSchema = new mongoose.Schema({
+  sem_image: String,
+  sem_punH1: String,
+  sem_punP: String,
+  sem_courses: {
+    sem_courseName: String,
+    sem_courseImg: String,
+    sem_courseDescipt: String,
+  },
+});
+
 app
   .route('/')
   .get(function (req, res) {
@@ -147,14 +158,14 @@ app
         },
         JWT_SECRET
       );
-      return res.redirect('/composeNPTEL');
+      return res.redirect('/admin/:username/composeNPTEL');
       // return res.json({ status: 'ok', data: token });
     }
     res.json({ status: 'error', error: 'Invalid Usernam/Password' });
   });
 
 app
-  .route('/composeNPTEL')
+  .route('/admin/:username/composeNPTEL')
   .get(function (req, res) {
     res.render('composeNPTEL');
   })
@@ -195,7 +206,7 @@ app
   .delete();
 
 app.get('/nptel', function (req, res) {
-  Nptel.find(function (err, foundNptels) {
+  Nptel.find({ week: 'One' }, function (err, foundNptels) {
     if (!err) {
       res.render('nptel', {
         foundNptels: foundNptels,
@@ -247,14 +258,21 @@ app.get('/nptel/:courseName/:weekNumber', function (req, res) {
   );
 });
 
+app.get('/sem1', function (req, res) {
+  res.render('sem1');
+});
+
+app.get('/sem2', function (req, res) {
+  res.render('sem3');
+});
+
+app.get('/sem3', function (req, res) {
+  res.render('sem3');
+});
+
 app.get('/:url', function (req, res) {
   res.render('error');
 });
-
-app.get('/semester', function (req, res) {
-  res.render('semester');
-});
-
 app.listen(port, function () {
   console.log('server started at port 2711');
 });

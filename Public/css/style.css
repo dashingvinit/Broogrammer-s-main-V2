@@ -77,7 +77,9 @@ body {
   }
 }
 
-
+.ml-1{
+margin-left: 1rem;
+}
 h1{
   color: var(--secondary_color);
   font-weight: 600;
@@ -438,10 +440,20 @@ hr {
     box-shadow: 0 5px 15px rgba(71, 0, 122, 1);
 }
 
+/**** for- you *****/
+#for-you{
+  margin-top: 2rem;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items:center;
+}
+
 /**** SDE-sheet *****/
 #SDE-sheet{
   position: relative;
-  margin: 50px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -450,12 +462,12 @@ hr {
 }
 #SDE-sheet .card{
   background-color: rgba(255, 254, 254, 0.303);
-  display: flex;
-  z-index: 0;
+  /* display: flex; */
+
   border-radius: 20px;
 }
 #SDE-sheet .card-body{
-  z-index: 1;
+
   backdrop-filter: blur(3px);
   border-radius: 20px;
 }
@@ -465,7 +477,6 @@ hr {
   align-self: center;
   object-fit:scale-down;
   pointer-events: none;
-  z-index: 0;
   width:50%;
   transition: all 0.2s ease-in-out;
 }

@@ -11,6 +11,9 @@ const mongoose = require('mongoose');
 const port = process.env.PORT || 2711;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 const app = express();
 
@@ -19,11 +22,22 @@ const JWT_SECRET = 'vbhjwi763892euiyvb9087rfvecbioi20989e13!@(&#Biob';
 app.set('view engine', 'ejs');
 
 app.use(express.static('Public'));
-app.use(express.static(__dirname + '/Public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.set('strictQuery', false);
+app.use(cookieParser('scbsidjnlskjvbjkbl;ncsbs;'));
+app.use(
+  session({
+    secret: 'scbsidjnlskjvbjkbl;ncsbs;',
+    cookie: { maxAge: 60000 },
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(flash());
 
+mongoose.set('strictQuery', false);
 mongoose.connect('mongodb://127.0.0.1:27017/brogrammersDB', {
   keepAlive: true,
   useNewUrlParser: true,
@@ -74,6 +88,12 @@ const semesterSchema = new mongoose.Schema({
     sem_courseDescipt: String,
   },
 });
+const Semester = mongoose.model('Semester', semesterSchema);
+
+const emailSchema = new mongoose.Schema({
+  user_email: [{ type: String }],
+});
+const Email = mongoose.model('Email', emailSchema);
 
 app
   .route('/')
@@ -81,13 +101,16 @@ app
     res.render('home');
   })
   .post(function (req, res) {
-    var email = req.body.email;
-    console.log(email);
-    if (res.statusCode === 200) {
-      console.log('email logged');
-    } else {
-      res.render('error');
-    }
+    const newEmail = new Email({
+      user_email: req.body.email,
+    });
+    Email.insertMany(newEmail, function (err) {
+      if (!err) {
+        res.send('email Logged');
+      } else {
+        res.send(err);
+      }
+    });
   });
 
 app
@@ -118,6 +141,8 @@ app
     });
     newAdmin.save(function (err) {
       if (!err) {
+        // req.flash('regMsg', 'User Regeistered');
+        // res.redirect('/login', {});
         // res.send('seccefully added the data');
         res.redirect('/admin');
       } else {
@@ -135,16 +160,20 @@ app
 app
   .route('/login')
   .get(function (req, res) {
+    // res.render('admin', { flashmesege: req.flash('regMsg') });
     res.render('admin');
   })
   .post(async function (req, res) {
     const admin_userName = req.body.login_username;
     // console.log(admin_userName);
+
     const login_pass = req.body.login_password;
+
     const admin = await Admin.findOne({
       admin_user_name: admin_userName,
     }).lean();
     // console.log(user);
+
     if (!admin) {
       return res.json({ status: 'error', error: 'Invalid username/Password' });
     }
@@ -220,8 +249,12 @@ app.get('/nptel', function (req, res) {
 app.get('/contact', function (req, res) {
   res.render('contact');
 });
+
 app.get('/sem1', function (req, res) {
   res.render('semester');
+});
+app.get('/sem3/oops', function (req, res) {
+  res.render('semCourse');
 });
 
 app.get('/nptel/:nptel_courseName', function (req, res) {

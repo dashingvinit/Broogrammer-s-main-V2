@@ -461,6 +461,7 @@ hr {
 #SDE-sheet{
   position: relative;
   display: flex;
+  margin: 5%;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -473,7 +474,6 @@ hr {
   border-radius: 20px;
 }
 #SDE-sheet .card-body{
-
   backdrop-filter: blur(3px);
   border-radius: 20px;
 }
@@ -482,8 +482,8 @@ hr {
   top: 20%;
   align-self: center;
   object-fit:scale-down;
+  width: 30%;
   pointer-events: none;
-  width:50%;
   transition: all 0.2s ease-in-out;
 }
 #SDE-sheet .card-img-top:hover{

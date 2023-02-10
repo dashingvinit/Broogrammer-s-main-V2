@@ -447,7 +447,7 @@ hr {
 }
 
 /**** for- you *****/
-#for-you{
+/* #for-you{
   margin-top: 2rem;
   height: 50vh;
   display: flex;
@@ -455,10 +455,19 @@ hr {
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items:center;
+} */
+
+#learn_more .para{
+  word-spacing: .5em;
+  letter-spacing: 1.2px;
 }
+
+
+
 
 /**** SDE-sheet *****/
 #SDE-sheet{
+  height: 40vh;
   position: relative;
   display: flex;
   margin: 5%;
@@ -466,6 +475,7 @@ hr {
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items:center;
+  align-content: center;
 }
 #SDE-sheet .card{
   background-color: rgba(255, 254, 254, 0.303);
@@ -513,7 +523,7 @@ hr {
 }
 #problem-of-day .card{
   border: 20px;
-  width: 1150px;
+  width: 100%;
   background-color: rgba(255, 255, 255  , .3);
   border: #eeeeee 5px;
 }

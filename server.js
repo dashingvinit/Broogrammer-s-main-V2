@@ -1,4 +1,3 @@
-//jshint esversion:6
 'use: strict';
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,19 +7,19 @@ const { get } = require('request');
 const ejs = require('ejs');
 const _ = require('lodash');
 const mongoose = require('mongoose');
-const port = process.env.PORT || 2711;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+// const { connectToDb, getDb } = request('./db');
 
+// init app and middleware
 const app = express();
-
+const port = process.env.PORT || 2711;
 const JWT_SECRET = 'vbhjwi763892euiyvb9087rfvecbioi20989e13!@(&#Biob';
 
 app.set('view engine', 'ejs');
-
 app.use(express.static('Public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,13 +36,19 @@ app.use(
 );
 app.use(flash());
 
+// connecting to local database
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://127.0.0.1:27017/brogrammersDB', {
-  keepAlive: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect('mongodb://127.0.0.1:27017/brogrammersDB', {
+mongoose.connect(
+  'mongodb+srv://vinitJain:t6zaKvYJh!t4263@cluster0.8bi136y.mongodb.net/brogrammersDB?retryWrites=true&w=majority',
+  {
+    keepAlive: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
+//creating NPTEL Collections
 const nptel_courseSchema = new mongoose.Schema({
   nptel_name: String,
   week: String,
@@ -69,6 +74,8 @@ const nptel_courseSchema = new mongoose.Schema({
   answer_10: String,
 });
 const Nptel = mongoose.model('Nptel', nptel_courseSchema);
+
+//creating Admin User Collections
 
 const adminSchema = new mongoose.Schema({
   admin_name: { type: String, required: true },
@@ -198,7 +205,7 @@ app
   .get(function (req, res) {
     res.render('composeNPTEL');
   })
-  .post(function (req, res) {
+  .post(async function (req, res) {
     const newNPTEL = new Nptel({
       nptel_name: req.body.nptel_courseName,
       week: req.body.weekNumber,
@@ -306,6 +313,7 @@ app.get('/sem3', function (req, res) {
 app.get('/:url', function (req, res) {
   res.render('error');
 });
+
 app.listen(port, function () {
   console.log('server started at port 2711');
 });

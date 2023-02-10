@@ -362,21 +362,6 @@ hr {
             background-position: 100% center;
 }
 
-/* ejs */
-.main-content{
-  margin:0px 100px;
-  color: white;
-}
-.nptel_question{
-  padding:10px;
-  border-radius: 15px;
-  background-color: rgba(255, 255, 255  , .3);
-}
-.nptel_answer{
-  border-radius: 10px;
-  background-color: #EEEEEE;
-  padding: 10px;
-}
 
 
 /* cards*/
@@ -446,23 +431,12 @@ hr {
     box-shadow: 0 5px 15px rgba(71, 0, 122, 1);
 }
 
-/**** for- you *****/
-/* #for-you{
-  margin-top: 2rem;
-  height: 50vh;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items:center;
-} */
 
+/**** for- you *****/
 #learn_more .para{
   word-spacing: .5em;
   letter-spacing: 1.2px;
 }
-
-
 
 
 /**** SDE-sheet *****/
@@ -721,6 +695,37 @@ background-image: linear-gradient(#ff6232, #dd8d65);
 }
 .bg-info{
   background-image: url("/Images/mesh-870.png");
+}
+
+/* ejs */
+#nptelWeekAnswer .nptelQ{
+border-radius: 5px;
+padding: .5%;
+/* background-color: rgb(178, 167, 235); */
+}
+#nptelWeekAnswer .nptelQ h4{
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+}
+
+#nptelWeekAnswer .nptelA{
+  background-color: #6ccd40;
+  border-radius: 5px;
+  padding: .5%;
+}
+#nptelWeekAnswer .nptelA h5{
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
+.nptel_question{
+  padding:10px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255  , .2);
+}
+.nptel_answer{
+  border-radius: 10px;
+  background: linear-gradient(rgba(156, 61, 252, 0.541),rgba(137, 52, 202, 0.315));
+  padding: 10px;
 }
 
 

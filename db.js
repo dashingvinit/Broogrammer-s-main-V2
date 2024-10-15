@@ -5,7 +5,7 @@ let dbConnection;
 module.exports = {
   connectToDb: (callBack) => {
     MongoClient.connect(
-      'mongodb+srv://vinitJain:t6zaKvYJh!t4263@cluster0.8bi136y.mongodb.net/brogrammersDB?retryWrites=true&w=majority',
+      'mongoUri',
       {
         keepAlive: true,
         useNewUrlParser: true,
